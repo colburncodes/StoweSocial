@@ -7,6 +7,7 @@
 import React, {useEffect, useState} from 'react';
 import {
   FlatList,
+  Pressable,
   SafeAreaView,
   Text,
   TouchableOpacity,
@@ -18,7 +19,9 @@ import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
 import globalStyle from './assets/styles/globalStyle';
 import GroupStory from './components/GroupStory/GroupStory';
 import InterestStory from './components/InterestStory/InterestStory';
-import {NativeBaseProvider} from 'native-base';
+import {config} from '@gluestack-ui/config';
+import {GluestackUIProvider} from '@gluestack-ui/themed';
+import PostStory from './components/PostStory/PostStory';
 
 const App = () => {
   const groupStories = [
@@ -115,10 +118,58 @@ const App = () => {
       name: 'Fitness',
     },
   ];
+
+  const groupPosts = [
+    {
+      id: 1,
+      title: 'St Louis Code and Coffee',
+      attending: 40,
+      date: '10/15/2023',
+      location: 'TechU',
+      image: require('./assets/images/default_post.png'),
+    },
+    {
+      id: 2,
+      title: 'JavaScript',
+      attending: 100,
+      date: '10/15/2023',
+      location: 'Online Event',
+      image: require('./assets/images/default_post.png'),
+    },
+    {
+      id: 3,
+      title: 'STL Code',
+      attending: 20,
+      date: '10/15/2023',
+      location: 'CoffeeHouse',
+      image: require('./assets/images/default_post.png'),
+    },
+    {
+      id: 4,
+      title: 'Angular',
+      attending: 30,
+      date: '10/15/2023',
+      location: 'Venture Cafe',
+      image: require('./assets/images/default_post.png'),
+    },
+    {
+      id: 5,
+      title: 'Black In Tech',
+      attending: 40,
+      date: '10/15/2023',
+      location: 'Online Event',
+      image: require('./assets/images/default_post.png'),
+    },
+  ];
   const pageSize = 4;
   const [userStoriesPage, setUserStoriesPage] = useState(1);
   const [userStoriesRenderedData, setUserStoriesRenderedData] = useState([]);
   const [isLoadingUserStories, setIsLoadingUserStories] = useState(false);
+
+  const groupPostPageSize = 4;
+  const [userPostsCurrentPage, setUserPostsCurrentPage] = useState(1);
+  const [userPostsRenderedData, setUserPostsRenderedData] = useState([]);
+  const [isLoadingUserPosts, setIsLoadingUserPosts] = useState(false);
 
   const pagination = (database, currPage, count) => {
     const startIndx = (currPage - 1) * count;
@@ -135,10 +186,10 @@ const App = () => {
     const getInitialData = pagination(groupStories, 1, userStoriesPage);
     setUserStoriesRenderedData(getInitialData);
     setIsLoadingUserStories(false);
-  }, []);
+  }, [groupStories, userStoriesPage]);
 
   return (
-    <NativeBaseProvider>
+    <GluestackUIProvider config={config}>
       <SafeAreaView>
         <View style={globalStyle.header}>
           <PageTitle title={'Hornets Nest'} />
@@ -149,6 +200,7 @@ const App = () => {
             </View>
           </TouchableOpacity>
         </View>
+        {/* Group Horizontal Feed */}
         <View style={globalStyle.groupStoryContainer}>
           <FlatList
             onEndReachedThreshold={0.5}
@@ -181,6 +233,7 @@ const App = () => {
             )}
           />
         </View>
+        {/* Interest Post View */}
         <View style={globalStyle.interestContainer}>
           <Text style={globalStyle.interestHeader}>Your Interest</Text>
           <FlatList
@@ -190,8 +243,26 @@ const App = () => {
             renderItem={({item}) => <InterestStory title={item.name} />}
           />
         </View>
+        {/* Group Post View */}
+        <View>
+          <Text style={globalStyle.calendarHeader}>Your Calendar</Text>
+          <FlatList
+            data={groupPosts}
+            renderItem={({item}) => (
+              <View style={globalStyle.groupPostContainer}>
+                <PostStory
+                  title={item.title}
+                  attending={item.attending}
+                  date={item.date}
+                  location={item.location}
+                  image={item.image}
+                />
+              </View>
+            )}
+          />
+        </View>
       </SafeAreaView>
-    </NativeBaseProvider>
+    </GluestackUIProvider>
   );
 };
 export default App;
