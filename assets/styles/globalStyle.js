@@ -39,8 +39,16 @@ const globalStyle = StyleSheet.create({
   },
   interestHeader: {
     color: '#022150',
-    marginBottom: 5,
+    marginBottom: 10,
     marginLeft: 20,
+  },
+  groupPostContainer: {
+    marginHorizontal: 28,
+  },
+  calendarHeader: {
+    color: '#022150',
+    marginBottom: 10,
+    marginLeft: 28,
   },
 });
 

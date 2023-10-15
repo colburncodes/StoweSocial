@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {getFontFamily} from '../../assets/fonts/helper';
-import {Badge} from 'native-base';
+import {Badge, BadgeText} from '@gluestack-ui/themed';
 
 const InterestStory = props => {
   const {title} = props;
   return (
     <View style={styles.storyContainer}>
       <TouchableOpacity style={styles.badgeIcon}>
-        <Badge colorScheme={'orange'}>
-          <Text style={styles.title}>{title}</Text>
+        <Badge action={'success'} size="sm" variant="solid" ml="$1">
+          <BadgeText>
+            <Text>{title}</Text>
+          </BadgeText>
         </Badge>
       </TouchableOpacity>
     </View>

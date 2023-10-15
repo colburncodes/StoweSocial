@@ -26,6 +26,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 ios/.xcode.env.local
+ios/Podfile.lock
 # Root dir shouldn't have Xcode project
 /*.xcodeproj
 
@@ -34,7 +35,7 @@ ios/.xcode.env.local
 /packages/react-native/template/ios/Pods/
 /packages/react-native/template/ios/Podfile.lock
 /packages/rn-tester/Gemfile.lock
-
+!/ios/StoweSocial.xcodeproj/project.pbxproj
 # Android/IntelliJ
 #
 build/

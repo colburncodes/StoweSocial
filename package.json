@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "clean": "./clean-all-mac.sh"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
@@ -16,12 +17,13 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
-    "native-base": "^3.4.28",
+    "@gluestack-style/react": "^1.0.5",
+    "@gluestack-ui/themed": "^1.0.5",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-svg": "^12.1.1"
+    "react-native-svg": "^13.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
